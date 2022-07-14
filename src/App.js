@@ -29,11 +29,12 @@ function App() {
 
 function Developer({ dev }) {
   const [expanded, setExpanded] = useState(false)
-
   return (
     <div className="dev-card">
       <h2>{dev.name}</h2>
-      <button onClick={() => setExpanded(!expanded)}>Show More</button>
+      <button onClick={() => setExpanded(!expanded)}>
+        {expanded ? 'Show Less' : 'Show More'}
+      </button>
       {expanded ? (
         <>
           <p>Expertise:</p>
