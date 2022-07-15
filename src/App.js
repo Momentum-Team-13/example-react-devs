@@ -18,12 +18,12 @@ function App() {
   ]
 
   return (
-    <>
+    <div className="container ">
       <h1>Devs for Hire</h1>
       {devs.map((dev, idx) => (
         <Developer dev={dev} key={idx} />
       ))}
-    </>
+    </div>
   )
 }
 
