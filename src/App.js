@@ -1,5 +1,5 @@
 import './App.css'
-import { useState } from 'react'
+import Developer from './Developer'
 
 function App() {
   const devs = [
@@ -24,30 +24,6 @@ function App() {
         <Developer dev={dev} key={idx} />
       ))}
     </>
-  )
-}
-
-function Developer({ dev }) {
-  const [expanded, setExpanded] = useState(false)
-  return (
-    <div className="dev-card">
-      <h2>{dev.name}</h2>
-      <button onClick={() => setExpanded(!expanded)}>
-        {expanded ? 'Show Less' : 'Show More'}
-      </button>
-      {expanded ? (
-        <>
-          <p>Expertise:</p>
-          <ul>
-            {dev.expertise.map((item, idx) => (
-              <li key={idx}>{item}</li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        ''
-      )}
-    </div>
   )
 }
 
