@@ -23,9 +23,17 @@ function App() {
     console.log('Selected dev: ', dev)
     setSelectedDev(dev)
   }
+
+  const handleGoBack = () => {
+    setSelectedDev(null)
+  }
+
   return (
     <div className="container ">
       <h1>Devs for Hire</h1>
+      {selectedDev && (
+        <button onClick={handleGoBack}>Go Back to Devs List</button>
+      )}
       {selectedDev ? (
         <Developer dev={selectedDev} />
       ) : (
