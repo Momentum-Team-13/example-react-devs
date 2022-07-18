@@ -1,5 +1,14 @@
+.body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 .dev-card {
-  border: 2px solid purple;
   margin: 10px;
   padding: 10px;
+  border: 2px solid #90BAAD;
+}
+
+.btn {
+  max-width: 100px;
+  padding: 5px;
 }
