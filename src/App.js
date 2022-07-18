@@ -1,7 +1,9 @@
 import './App.css'
 import Developer from './Developer'
-
+import { useState } from 'react'
 function App() {
+  const [selectedDev, setSelectedDev] = useState(null)
+
   const devs = [
     {
       name: 'Susan',
@@ -17,12 +19,22 @@ function App() {
     },
   ]
 
+  const handleSelectedDev = (dev) => {
+    console.log('Selected dev: ', dev)
+    setSelectedDev(dev)
+  }
   return (
     <div className="container ">
       <h1>Devs for Hire</h1>
-      {devs.map((dev, idx) => (
-        <Developer dev={dev} key={idx} />
-      ))}
+      {selectedDev ? (
+        <Developer dev={selectedDev} />
+      ) : (
+        devs.map((dev, idx) => (
+          <div className="dev" onClick={() => handleSelectedDev(dev)}>
+            <Developer dev={dev} key={idx} />
+          </div>
+        ))
+      )}
     </div>
   )
 }
