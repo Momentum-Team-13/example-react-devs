@@ -4,7 +4,7 @@ import { TriangleDownIcon, TriangleRightIcon } from '@primer/octicons-react'
 export default function Developer({ dev }) {
   const [expanded, setExpanded] = useState(false)
   return (
-    <div className="dev-card " onClick={() => setExpanded(!expanded)}>
+    <div className="dev-card ">
       <h2>{dev.name}</h2>
       {expanded ? (
         <>
@@ -12,6 +12,7 @@ export default function Developer({ dev }) {
             className="disclosure-control"
             role="button"
             aria-expanded={expanded}
+            onClick={() => setExpanded(!expanded)}
           >
             <TriangleDownIcon size={24} aria-label="Show less" />
             <span>Show less</span>
@@ -28,6 +29,7 @@ export default function Developer({ dev }) {
           className="disclosure-control"
           role="button"
           aria-expanded={expanded}
+          onClick={() => setExpanded(!expanded)}
         >
           <TriangleRightIcon size={24} aria-label="Show more" />
           <span>Show more</span>
