@@ -3,8 +3,9 @@ import { TriangleDownIcon, TriangleRightIcon } from '@primer/octicons-react'
 
 export default function Developer({ dev }) {
   const [expanded, setExpanded] = useState(false)
+
   return (
-    <div className="dev-card ">
+    <div className="dev-card">
       <h2>{dev.name}</h2>
       {expanded ? (
         <>

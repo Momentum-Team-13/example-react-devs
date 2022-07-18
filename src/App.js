@@ -1,23 +1,9 @@
 import './App.css'
 import Developer from './Developer'
 import { useState } from 'react'
-function App() {
-  const [selectedDev, setSelectedDev] = useState(null)
 
-  const devs = [
-    {
-      name: 'Susan',
-      expertise: ['React', 'JavaScript', 'Music'],
-    },
-    {
-      name: 'Rachel',
-      expertise: ['React', 'JavaScript', 'Yoga'],
-    },
-    {
-      name: 'Daniela',
-      expertise: ['React', 'JavaScript', 'Yoga'],
-    },
-  ]
+function App({ devs }) {
+  const [selectedDev, setSelectedDev] = useState(null)
 
   const handleSelectedDev = (dev) => {
     console.log('Selected dev: ', dev)
