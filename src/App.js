@@ -1,9 +1,11 @@
 import './App.css'
 import Developer from './Developer'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
-function App({ devs }) {
+function App() {
   const [selectedDev, setSelectedDev] = useState(null)
+  const [devs, setDevs] = useState([])
 
   const handleSelectedDev = (dev) => {
     console.log('Selected dev: ', dev)
@@ -14,6 +16,14 @@ function App({ devs }) {
     setSelectedDev(null)
   }
 
+  useEffect(() => {
+    // ajax request to get dev data
+    axios
+      .get('https://node-api-devs-for-hire.glitch.me/devs')
+      .then((res) => setDevs(res.data.data))
+  }, [])
+
+  console.log('About to return from the App component')
   return (
     <div className="container ">
       <h1>Devs for Hire</h1>
@@ -23,9 +33,14 @@ function App({ devs }) {
       {selectedDev ? (
         <Developer dev={selectedDev} />
       ) : (
-        devs.map((dev, idx) => (
-          <div className="dev" onClick={() => handleSelectedDev(dev)}>
-            <Developer dev={dev} key={idx} />
+        devs.map((dev) => (
+          <div
+            className="dev-card"
+            key={dev.id}
+            onClick={() => handleSelectedDev(dev)}
+          >
+            <h2>{dev.name}</h2>
+            <p>Expertise: {dev.expertise}</p>
           </div>
         ))
       )}
