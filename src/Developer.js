@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { TriangleDownIcon, TriangleRightIcon } from '@primer/octicons-react'
 import axios from 'axios'
 
-export default function Developer({ dev }) {
+export default function Developer({ dev, setCount }) {
   const [expanded, setExpanded] = useState(false)
   const [repos, setRepos] = useState([])
 
@@ -16,7 +16,7 @@ export default function Developer({ dev }) {
     <div className="dev-card">
       <h2>{dev.name}</h2>
       <p>Expertise: {dev.expertise}</p>
-
+      <button onClick={setCount}>Count up</button>
       {expanded ? (
         <>
           <div

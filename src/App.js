@@ -6,6 +6,7 @@ import axios from 'axios'
 function App() {
   const [selectedDev, setSelectedDev] = useState(null)
   const [devs, setDevs] = useState([])
+  const [count, setCount] = useState(0)
 
   const handleSelectedDev = (dev) => {
     console.log('Selected dev: ', dev)
@@ -26,12 +27,13 @@ function App() {
   console.log('About to return from the App component')
   return (
     <div className="container ">
+      <Count count={count} />
       <h1>Devs for Hire</h1>
       {selectedDev && (
         <button onClick={handleGoBack}>Go Back to Devs List</button>
       )}
       {selectedDev ? (
-        <Developer dev={selectedDev} />
+        <Developer dev={selectedDev} setCount={() => setCount(count + 1)} />
       ) : (
         devs.map((dev) => (
           <div
@@ -46,6 +48,10 @@ function App() {
       )}
     </div>
   )
+}
+
+const Count = ({ count }) => {
+  return <div className="counter">Count is currently: {count}</div>
 }
 
 export default App
