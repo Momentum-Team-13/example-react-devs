@@ -2,11 +2,14 @@ import './App.css'
 import Developer from './Developer'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import LoadingIcons from 'react-loading-icons'
+import Grid from 'react-loading-icons/dist/esm/components/grid'
 
 function App() {
   const [selectedDev, setSelectedDev] = useState(null)
   const [devs, setDevs] = useState([])
   const [count, setCount] = useState(0)
+  const [loading, setLoading] = useState(true)
 
   const handleSelectedDev = (dev) => {
     console.log('Selected dev: ', dev)
@@ -19,12 +22,23 @@ function App() {
 
   useEffect(() => {
     // ajax request to get dev data
-    axios
-      .get('https://node-api-devs-for-hire.glitch.me/devs')
-      .then((res) => setDevs(res.data.data))
+    axios.get('https://node-api-devs-for-hire.glitch.me/devs').then((res) => {
+      setDevs(res.data.data)
+      setLoading(false)
+    })
   }, [])
 
-  console.log('About to return from the App component')
+  if (loading) {
+    return (
+      <div
+        className="loading"
+        style={{ display: 'grid', placeContent: 'center', height: '100vh' }}
+      >
+        <LoadingIcons.Hearts fill="#8A4F7D" height="5em" />
+      </div>
+    )
+  }
+
   return (
     <div className="container ">
       <Count count={count} />
